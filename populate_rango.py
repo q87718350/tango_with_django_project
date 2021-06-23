@@ -11,25 +11,33 @@ from rango.models import Category, Page
 def populate():
     python_pages = [
         {'title': 'Official Python Tutorial',
-         'url': 'https://docs.python.org/3/tutorial/'},
+         'url': 'https://docs.python.org/3/tutorial/',
+         'views' : 15},
         {'title': 'How to Think like a Computer Scientist',
-         'url': 'https://www.greenteapress.com/thinkpython/'},
+         'url': 'https://www.greenteapress.com/thinkpython/',
+         'views' : 30},
         {'title': 'Learn Python in 10 Minutes',
-         'url': 'https://www.korokithakis.net/tutorials/python/'}
+         'url': 'https://www.korokithakis.net/tutorials/python/',
+         'views' : 20}
     ]
 
     django_pages = [{'title': 'Official Django Tutorial',
-                     'url': 'https://docs.djangoproject.com/en/2.1/intro/tutorial01/'},
+                     'url': 'https://docs.djangoproject.com/en/2.1/intro/tutorial01/',
+                     'views' : 7},
                     {'title': 'Django Rocks',
-                     'url': 'https://www.djangorocks.com/'},
+                     'url': 'https://www.djangorocks.com/',
+                     'views' : 9},
                     {'title': 'How to Tango with Django',
-                     'url': 'https://www.tangowithdjango.com/'}]
+                     'url': 'https://www.tangowithdjango.com/',
+                     'views' : 14}]
 
     other_pages = [
         {'title': 'Bottle',
-         'url': 'https://bottlepy.org/docs/dev/'},
+         'url': 'https://bottlepy.org/docs/dev/',
+         'views' : 7},
         {'title': 'Flask',
-         'url': 'https://flask.pocoo.org'}]
+         'url': 'https://flask.pocoo.org',
+         'views' : 17}]
 
     cats = {'Python': {'pages': python_pages, 'views': 128, 'likes': 64},
             'Django': {'pages': django_pages, 'views': 64, 'likes': 32},
@@ -39,7 +47,7 @@ def populate():
         c = add_cat(cat, cat_data['views'], cat_data['likes'])
 
         for p in cat_data['pages']:
-            add_page(c, p['title'], p['url'])
+            add_page(c, p['title'], p['url'], p['views'])
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
